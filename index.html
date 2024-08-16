@@ -3,11 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <script src="js/script.js" defer></script>
     <title>Todo List</title>
 </head>
 <body>
-    
+    <div class="container">
+        <h1>Todo List</h1>
+        <hr>
+        <section class="section1">
+           <h3>Adicione uma tarefa</h3>
+            <div class="adicionando">
+                <input type="text" name="userText" id="userText" placeholder="Escreva a tarefa">
+                <select id="userChoice" name="userChoice">
+                    <option value="option1">Baixa</option>
+                    <option value="option2">Média</option>
+                    <option value="option3">Alta</option>
+            </select>
+           <button class="userBtn"><i class="fas fa-plus"></i></button>
+            </div>
+            <p id="primeiroP">Status 1/3</p>
+        </section>
+        <section class="section2"></section>
+        <section class="section3"></section>
+    </div>
 </body>
 </html>
