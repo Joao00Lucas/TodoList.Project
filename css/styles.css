@@ -18,12 +18,12 @@ body {
 .container {
     width: 30rem;
     height: 35rem;
-    border: 1px solid black;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
     padding: 1rem;
     background: #ffffff;
+    box-shadow: 8px 8px 10px 0px rgba(0, 0, 0, 0.3)
 }
 
 h1 {
@@ -42,6 +42,9 @@ hr {
 .section1 {
     height: 8rem;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 h3 {
@@ -80,4 +83,50 @@ input::placeholder {
     position: relative;
     top: 1rem;
     left: 21rem;
+}
+
+.section2 {
+    height: 8rem;
+    padding: 1rem;
+}
+
+.filtrando {
+    display: flex;
+}
+
+.filtro {
+    margin-left: 13rem;
+}
+
+.pesquisando {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.search {
+    width: 18rem;
+    display: flex;
+}
+
+#userSearch {
+    width: 14rem;
+    height: 2rem;
+    border-radius: 5px;
+}
+
+.pesquisaBtn {
+    width: 2rem;
+    height: 2rem;
+    margin-left: 0.5rem;
+}
+
+#userFilter {
+    width: 8rem;
+    border-radius: 5px;
+}
+
+.section3 {
+    height: 12rem;
+    border: 1px solid black;
 }
