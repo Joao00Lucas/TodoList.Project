@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ebeaea;
+}
+
+.container {
+    width: 30rem;
+    height: 35rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: #ffffff;
+    box-shadow: 8px 8px 10px 0px rgba(0, 0, 0, 0.3)
+}
+
+h1 {
+    width: 100%;
+    height: 4rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+hr {
+    width: 100%; 
+    height: 3px; 
+    background-color: #000; 
+  }
+
+.section1 {
+    height: 8rem;
+    padding: 1rem;
+    display: flex;
+    gap: 6px;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dark-light {
+    width: 4rem;
+    border-radius: 1rem;
+    position: relative;
+    bottom: 4rem;
+    left: 24rem;
+    display: flex;
+    justify-content: start;
+}
+
+h3 {
+    font-weight: 400;
+    font-size: 1rem;
+}
+
+.adicionando {
+    display: flex;
+    justify-content: space-between;
+}
+
+#userText {
+    width: 18rem;
+    height: 2rem;
+    border-radius: 5px;
+}
+
+input::placeholder {
+    padding-left: 1rem;
+}
+
+#userChoice {
+    width: 5rem;
+    height: 2rem;
+    border-radius: 5px;
+}
+
+button {
+    width: 2rem;
+    height: 2rem;
+    background-color: #FDFDFD;
+    color: #102f5e;
+    border: 2px solid #102f5e;
+    padding: .3rem .6rem;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}
+
+button:hover {
+    background-color: #102f5e;
+}
+
+button:hover > i {
+    color: #ffffff;
+}
+
+#primeiroP {
+    font-size: 13px;
+    position: relative;
+    top: -4rem;
+    left: 19rem;
+}
+
+.section2 {
+    height: 8rem;
+    padding: 1rem;
+}
+
+.filtrando {
+    display: flex;
+}
+
+.filtro {
+    margin-left: 13rem;
+}
+
+.pesquisando {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.search {
+    width: 18rem;
+    display: flex;
+}
+
+#userSearch {
+    width: 14rem;
+    height: 2rem;
+    border-radius: 5px;
+}
+
+.pesquisaBtn {
+    width: 2rem;
+    height: 2rem;
+    margin-left: 0.5rem;
+}
+
+#userFilter {
+    width: 8rem;
+    border-radius: 5px;
+}
+
+.section3 {
+    height: 12rem;
+}
+
+.section3 p {
+    font-size: .8rem;
+    text-align: center;
+}
+
+.task-card {
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.task {
+    height: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgb(238, 175, 175);
+    padding: .5rem;
+}
+
+.buttons-task {
+    width: 7rem;
+    display: flex;
+    justify-content: space-between;
+}
