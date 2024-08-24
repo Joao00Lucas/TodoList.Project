@@ -100,11 +100,11 @@ button {
 }
 
 button:hover {
-    background-color: #102f5e;
+    background-color: #007bff;   
 }
 
 button:hover > i {
-    color: #ffffff;
+    color: #fff;
 }
 
 #primeiroP {
