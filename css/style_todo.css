@@ -1,9 +1,9 @@
 body{
-    background-color: #ccc;
+    background: #d9eefa;
 }
 
 .container{
-    background-color: rgb(228, 200, 242);
+    background: linear-gradient( 12DEG,#d9eefa,#3b2e6af3);
     height: 100vh;
     margin-top: 20px;
     border-radius: 10px;
@@ -15,6 +15,14 @@ body{
     /* margin-bottom: 10px; */
     margin-top: 10px;
     padding: 15px;
+}
+
+input{
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+    height: 39px;
+    background-color: #fff;
+    
 }
 
 .form-inline{
@@ -32,9 +40,13 @@ body{
 
 #staticPesquisar2{
     width: 100px;
+    color: #ffffff;
+    font-weight:500;
 }
 #staticTarefa2{
     width: 156px;
+    color: #ffffff;
+    font-weight: 400;
 }
 
 .userBtn-remove, .userBtn-edit{
