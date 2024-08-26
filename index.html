@@ -9,63 +9,112 @@
     <title>Todo List</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Todo List</h1>
-        <button class="dark-light">
-            <i class="fa-solid fa-circle"></i>
-            <i class="fa-regular fa-circle"></i>
-        </button>
-        <hr>
-        <section class="section1">
-           <h3>Adicione uma tarefa</h3>
-            <div class="adicionando">
-                <input type="text" name="userText" id="userText" placeholder="Escreva a tarefa">
-                <select id="userChoice" name="userChoice">
-                    <option value="option1">Baixa</option>
-                    <option value="option2">Média</option>
-                    <option value="option3">Alta</option>
-                </select>
-                <button class="userBtn"><i class="fas fa-plus"></i></button>
-            </div>
-            <h3>Adicione uma prazo</h3>
-            <div class="adicionando">
-                <input type="date" name="" id="">
-            </div>
-            <p id="primeiroP">Status 1/3</p>
-        </section>
-        <section class="section2">
-            <div class="filtrando">
-                <h3 class="pesquisa">Pesquisar:</h3>
-                <h3 class="filtro">Filtrar:</h3>
-            </div>
-            <div class="pesquisando">
-                <div class="search">
-                    <input type="text" name="userSearch" id="userSearch" placeholder="Buscar">
-                    <button class="pesquisaBtn"><i class="fas fa-delete-left"></i></button>
-                </div>
-                <select id="userFilter" name="userFilter">
-                    <option value="option1">Todos</option>
-                    <option value="option2">A Fazer</option>
-                    <option value="option3">fazendo</option>
-                    <option value="option3">Concluídos</option>
-                </select>
-            </div>
-        </section>
-        <section class="section3">
-            <div class="task-card">
-                <div class="task">
-                    <h3>Aprender react</h3>
-                    <div class="buttons-task">
-                        <button class="userBtn-check"><i class="fas fa-check"></i></button>
-                        <button class="userBtn-edit"><i class="fas fa-pen"></i></button>
-                        <button class="userBtn-remove"><i class="fas fa-xmark"></i></button>
+    <div class="all">
+        <div class="themeButton">
+            <button class="dark-light">
+                <i class="fa-solid fa-circle"></i>
+                <!--<i class="fa-regular fa-circle"></i>-->
+            </button>
+        </div>
+        <div class="app">
+            <div class="container">
+                <h1>MINHA LISTA DE TAREFAS</h1>
+                <hr>
+                <section class="section1">
+                    <div class="create">
+                        <h3>Adicione uma tarefa</h3>
+                        <div class="adicionando">
+                            <input type="text" name="userText" id="userText" placeholder="Escreva a tarefa">
+                        </div>
                     </div>
-                </div>
-                <p>Aqui pode ficar a descrição da tarefa, o que precisa ser feito</p>
-                <p>Prazo de conclusão: 5 dias</p>
+
+                    <div class="create">
+                        <h3>Adicione um prazo</h3>
+                        <div class="adicionando">
+                            <input type="date" name="date" id="date">
+                        </div>
+                    </div>
+
+                    <div class="create">
+                        <h3>Adicione um nível</h3>
+                        <select id="userChoice" name="userChoice">
+                            <option value="option1">Baixa</option>
+                            <option value="option2">Média</option>
+                            <option value="option3">Alta</option>
+                        </select>
+                    </div>
+                    <button class="userBtn"><i class="fas fa-plus"></i></button>  
+                </section>
+
+                <section class="section2">
+                    <div class="display">
+                        <div class="filtrando">
+                            <h3 class="pesquisa">Pesquisar:</h3>
+                            <div class="filter">
+                                <input type="text" name="userFilter" id="userFilter" placeholder="Buscar">
+                                <button class="pesquisaBtn"><i class="fas fa-delete-left"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="pesquisando">
+                            <h3 class="filtro">Filtrar:</h3>  
+                            <select id="userFilter" name="userFilter">
+                                <option value="option1">Todos</option>
+                                <option value="option2">A Fazer</option>
+                                <option value="option3">Fazendo</option>
+                                <option value="option3">Concluídos</option>
+                            </select>
+                        </div>
+                    </div>
+                    <hr>
+                </section>
+    
+                <section class="section3">
+                    <div class="task-card">
+                        <div class="task">
+                            <h3>Aprender react</h3>
+                        </div>
+                        <div class="description">
+                            <p>Aqui pode ficar a descrição da tarefa, o que precisa ser feito</p>
+                            <p>Prazo de conclusão: 5 dias</p>
+                        </div>
+                        <div class="buttons-task">
+                            <button class="userBtn-check"><i class="fas fa-check"></i></button>
+                            <button class="userBtn-edit"><i class="fas fa-pen"></i></button>
+                            <button class="userBtn-remove"><i class="fas fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    <div class="task-card">
+                        <div class="task">
+                            <h3>Aprender react</h3>
+                        </div>
+                        <div class="description">
+                            <p>Aqui pode ficar a descrição da tarefa, o que precisa ser feito</p>
+                            <p>Prazo de conclusão: 5 dias</p>
+                        </div>
+                        <div class="buttons-task">
+                            <button class="userBtn-check"><i class="fas fa-check"></i></button>
+                            <button class="userBtn-edit"><i class="fas fa-pen"></i></button>
+                            <button class="userBtn-remove"><i class="fas fa-xmark"></i></button>
+                        </div>
+                    </div>
+                    <div class="task-card">
+                        <div class="task">
+                            <h3>Aprender react</h3>
+                        </div>
+                        <div class="description">
+                            <p>Aqui pode ficar a descrição da tarefa, o que precisa ser feito</p>
+                            <p>Prazo de conclusão: 5 dias</p>
+                        </div>
+                        <div class="buttons-task">
+                            <button class="userBtn-check"><i class="fas fa-check"></i></button>
+                            <button class="userBtn-edit"><i class="fas fa-pen"></i></button>
+                            <button class="userBtn-remove"><i class="fas fa-xmark"></i></button>
+                        </div>
+                    </div>
+                </section>
             </div>
-            <hr>
-        </section>
+        </div>
     </div>
 </body>
 </html>
