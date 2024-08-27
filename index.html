@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js/script.js" defer></script>
+    <script src="js/arquivo.js" defer></script>
     <title>Todo List</title>
 </head>
 <body>
@@ -24,23 +24,23 @@
                     <div class="create">
                         <h3>Adicione uma tarefa</h3>
                         <div class="adicionando">
-                            <input type="text" name="userText" id="userText" placeholder="Escreva a tarefa">
+                            <input type="text" name="userText" class="userText" placeholder="Escreva a tarefa">
                         </div>
                     </div>
 
                     <div class="create">
-                        <h3>Adicione um prazo</h3>
+                        <h3>Adicione uma descrição</h3>
                         <div class="adicionando">
-                            <input type="date" name="date" id="date">
+                            <input type="text" name="userText" class="userDesc" placeholder="Adicione uma descrição">
                         </div>
                     </div>
 
                     <div class="create">
                         <h3>Adicione um nível</h3>
-                        <select id="userChoice" name="userChoice">
-                            <option value="option1">Baixa</option>
-                            <option value="option2">Média</option>
-                            <option value="option3">Alta</option>
+                        <select class="userChoice" name="userChoice">
+                            <option value="baixa">Baixa</option>
+                            <option value="media">Média</option>
+                            <option value="alta">Alta</option>
                         </select>
                     </div>
                     <button class="userBtn"><i class="fas fa-plus"></i></button>  
@@ -60,7 +60,6 @@
                             <h3 class="filtro">Filtrar:</h3>  
                             <select id="userFilter" name="userFilter">
                                 <option value="option1">Todos</option>
-                                <option value="option2">A Fazer</option>
                                 <option value="option3">Fazendo</option>
                                 <option value="option3">Concluídos</option>
                             </select>
@@ -70,13 +69,12 @@
                 </section>
     
                 <section class="section3">
-                    <div class="task-card">
-                        <div class="task">
+                    <!-- <div class="task-card">
+                        <div class="task-red">
                             <h3>Aprender react</h3>
                         </div>
                         <div class="description">
-                            <p>Aqui pode ficar a descrição da tarefa, o que precisa ser feito</p>
-                            <p>Prazo de conclusão: 5 dias</p>
+                            <p>Adicione aqui a descrição da tarefa</p>
                         </div>
                         <div class="buttons-task">
                             <button class="userBtn-check"><i class="fas fa-check"></i></button>
@@ -85,12 +83,11 @@
                         </div>
                     </div>
                     <div class="task-card">
-                        <div class="task">
+                        <div class="task-green">
                             <h3>Aprender react</h3>
                         </div>
                         <div class="description">
                             <p>Aqui pode ficar a descrição da tarefa, o que precisa ser feito</p>
-                            <p>Prazo de conclusão: 5 dias</p>
                         </div>
                         <div class="buttons-task">
                             <button class="userBtn-check"><i class="fas fa-check"></i></button>
@@ -99,19 +96,18 @@
                         </div>
                     </div>
                     <div class="task-card">
-                        <div class="task">
-                            <h3>Aprender react</h3>
+                        <div class="task-blue">
+                            <h3 class="titulo">Aprender react</h3>
                         </div>
                         <div class="description">
-                            <p>Aqui pode ficar a descrição da tarefa, o que precisa ser feito</p>
-                            <p>Prazo de conclusão: 5 dias</p>
+                            <p class="descricao">Aqui pode ficar a descrição da tarefa, o que precisa ser feito</p>
                         </div>
                         <div class="buttons-task">
                             <button class="userBtn-check"><i class="fas fa-check"></i></button>
                             <button class="userBtn-edit"><i class="fas fa-pen"></i></button>
                             <button class="userBtn-remove"><i class="fas fa-xmark"></i></button>
                         </div>
-                    </div>
+                    </div> -->
                 </section>
             </div>
         </div>
