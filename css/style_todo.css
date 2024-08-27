@@ -49,13 +49,24 @@ input{
     font-weight: 400;
 }
 
-.userBtn-remove, .userBtn-edit{
-    display: inline;
-    justify-content: space-between;
+.rodape{
+    margin-bottom: 10px;
+}
+
+.userBtn-remove {
+    /* display: inline;
+    justify-content: space-between; */
     gap: 10px;
     width: 40px;
-    height: 37px
-    
+    height: 37px;
+}
+
+.userBtn-edit{
+    /* display: inline;
+    justify-content: space-between; */
+    gap: 10px;
+    width: 40px;
+    height: 37px;
 }
 
 .userBtn-edit:hover{
