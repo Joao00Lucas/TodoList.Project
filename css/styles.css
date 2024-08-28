@@ -193,12 +193,8 @@ h1 {
     transition: max-height 1s;
 }
 
-.section3.open {
-    height: 40rem;
-}
-
 .section3 p {
-    font-size: .8rem;
+    font-size: 1rem;
     text-align: center;
 }
 
@@ -275,4 +271,14 @@ section::-webkit-scrollbar-thumb {
   
 section::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+.done .description {
+    color: #42a535;
+    font-size: 1rem;
+    font-weight: 600;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

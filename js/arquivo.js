@@ -5,19 +5,18 @@ const section3 = document.querySelector('.section3');
 const titulo = document.querySelector('.userText');
 const descricao = document.querySelector('.userDesc');
 const nivel = document.querySelector('.userChoice');
-// BOTÃO
+// BOTÕES
 const botaoAdicionar = document.querySelector('.userBtn');
+const botaoConcluir = document.querySelector('.userBtn-check');
+const botaoEditar = document.querySelector('.userBtn-edit');
+const botaoExcluir = document.querySelector('.userBtn-remove');
 
-// EVENTOS
-botaoAdicionar.addEventListener('click', (e)=> {
-    e.preventDefault();
 
-    const adicionaTitulo = titulo.value
+// FUNÇÕES
+// função cria card
+const saveCard = (text)=> {
     const adicionaDescricao = descricao.value
     const adicionaNivel = nivel.value
-
-    console.log(adicionaNivel);
-
 
     const card = document.createElement('div');
     card.classList.add("task-card");
@@ -60,8 +59,8 @@ botaoAdicionar.addEventListener('click', (e)=> {
     tirthcard.appendChild(botaoremove)
     container.appendChild(section3)
 
-    title.innerHTML = adicionaTitulo;
-    paragrafo.innerHTML = adicionaDescricao;
+    title.innerText = text;
+    paragrafo.innerText = adicionaDescricao;
     if (adicionaNivel == "baixa") {
         firstcard.classList.add("task-baixa");
     } else if (adicionaNivel == "media"){
@@ -69,5 +68,40 @@ botaoAdicionar.addEventListener('click', (e)=> {
     }  else {
         firstcard.classList.add("task-alta");
     }
+    titulo.value ='';
+    descricao.value ='';
+}
 
+
+// EVENTOS
+// evento adiciona card
+botaoAdicionar.addEventListener('click', (e)=> {
+    e.preventDefault();
+
+    const adicionaTitulo = titulo.value
+
+    if (adicionaTitulo) {
+        saveCard(adicionaTitulo)
+    }
+})
+
+document.addEventListener('click', (e)=>{
+
+    const conteudo = e.target;
+    const divPai = conteudo.closest('.task-card');
+    const description = document.querySelector('.description');
+
+    if(conteudo.classList.contains('userBtn-check')){
+        divPai.classList.toggle('done');
+        description.innerText = "Tarefa concluída!";
+        console.log("clicou para finalizar");
+    }    
+    
+    if(conteudo.classList.contains('userBtn-edit')){
+        
+    }
+
+    if (conteudo.classList.contains('userBtn-remove')){
+        divPai.remove();
+    }
 })
