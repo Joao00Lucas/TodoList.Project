@@ -7,17 +7,44 @@
     font-family: 'Poppins', sans-serif;
 }
 
-body {
+.all {
+    width: 100vw;
     height: 100vh;
+    background: #a2a9b4;;
+}
+
+.themeButton {
+    height: 5%;
+    display: flex;
+    justify-content: end;
+    padding: 1rem;
+}
+
+.app {
+    height: 95%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #ebeaea;
+}
+
+.dark-light {
+    width: 4rem;
+    height: 2rem;
+    border-radius: 1rem;
+    background-color: #FDFDFD;
+    color: #0c2142;
+    border: 3px solid #0c2142;
+    padding: .6rem;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: start;
+    align-items: center;
 }
 
 .container {
-    width: 30rem;
-    height: 35rem;
+    width: 80rem;
+    height: 40rem;
     border-radius: 1rem;
     display: flex;
     flex-direction: column;
@@ -28,39 +55,25 @@ body {
 
 h1 {
     width: 100%;
-    height: 4rem;
+    height: 3rem;
     font-weight: 500;
     text-align: center;
 }
 
-hr {
-    width: 100%; 
-    height: 3px; 
-    background-color: #000; 
-  }
-
+/*######################################################################################################*/
 .section1 {
-    height: 8rem;
+    height: 7rem;
     padding: 1rem;
     display: flex;
-    gap: 6px;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
+    align-items: start;
 }
 
-.dark-light {
-    width: 4rem;
-    border-radius: 1rem;
-    position: relative;
-    bottom: 4rem;
-    left: 24rem;
-    display: flex;
-    justify-content: start;
-}
-
-h3 {
-    font-weight: 400;
+.section1 h3 {
+    font-weight: 500;
     font-size: 1rem;
+    color: #0c2142;
 }
 
 .adicionando {
@@ -68,28 +81,28 @@ h3 {
     justify-content: space-between;
 }
 
-#userText {
+.section1 input {
     width: 18rem;
     height: 2rem;
-    border-radius: 5px;
+    border-radius: 1rem;
+    padding-left: .5rem;
+    border: 3px solid #0c2142;
 }
 
-input::placeholder {
-    padding-left: 1rem;
-}
-
-#userChoice {
-    width: 5rem;
+.userChoice {
+    width: 18rem;
     height: 2rem;
-    border-radius: 5px;
+    border-radius: 1rem;
+    border: 3px solid #0c2142;
+    padding-left: .5rem;
 }
 
-button {
+.container button {
     width: 2rem;
     height: 2rem;
     background-color: #FDFDFD;
-    color: #102f5e;
-    border: 2px solid #102f5e;
+    color: #0c2142;
+    border: 3px solid #0c2142;
     padding: .3rem .6rem;
     font-size: 1rem;
     cursor: pointer;
@@ -97,66 +110,91 @@ button {
     justify-content: center;
     align-items: center;
     transition: 0.4s;
+    border-radius: .5rem;
 }
 
-button:hover {
-    background-color: #007bff;   
+.container button:hover {
+    background-color: #0c2142;
 }
 
-button:hover > i {
-    color: #fff;
+.container button:hover > i {
+    color: #ffffff;
 }
-
-#primeiroP {
-    font-size: 13px;
-    position: relative;
-    top: -4rem;
-    left: 19rem;
-}
-
+/*######################################################################################################*/
 .section2 {
     height: 8rem;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.section2 h3 {
+    font-weight: 500;
+    font-size: 1rem;
+    color: #0c2142;
 }
 
 .filtrando {
+    width: 25rem;
     display: flex;
+    flex-direction: column;
 }
 
-.filtro {
-    margin-left: 13rem;
-}
-
-.pesquisando {
+.filter {
     display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-}
-
-.search {
-    width: 18rem;
-    display: flex;
-}
-
-#userSearch {
-    width: 14rem;
-    height: 2rem;
-    border-radius: 5px;
+    flex-direction: row;
 }
 
 .pesquisaBtn {
-    width: 2rem;
+    margin-left: 1rem;
+}
+
+.section2 input {
+    width: 18rem;
     height: 2rem;
-    margin-left: 0.5rem;
+    border-radius: 1rem;
+    padding-left: .5rem;
+    border: 3px solid #0c2142;
+}
+
+.pesquisando {
+    width: 20rem;
+    display: flex;
+    flex-direction: column;
 }
 
 #userFilter {
-    width: 8rem;
-    border-radius: 5px;
+    width: 18rem;
+    height: 2rem;
+    border-radius: 1rem;
+    border: 3px solid #0c2142;
+    padding-left: .5rem;
 }
 
+.display {
+    display: flex;
+}
+
+.section2 hr {
+    width: 100%; 
+    height: 1px;
+    margin-top: 3rem;
+}
+/*######################################################################################################*/
 .section3 {
-    height: 12rem;
+    height: 20rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-bottom: 1rem;
+    transition: max-height 1s;
+}
+
+.section3.open {
+    height: 40rem;
 }
 
 .section3 p {
@@ -165,23 +203,76 @@ button:hover > i {
 }
 
 .task-card {
-    height: 5rem;
+    width: 20rem;
+    height: 12rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 8px 8px 10px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
+
+.task-alta {
+    width: 20rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(238, 175, 175);
+    border-top-left-radius: 1rem; 
+    border-top-right-radius: 1rem;
+}
+
+.task-baixa {
+    width: 20rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(238, 237, 175);
+    border-top-left-radius: 1rem; 
+    border-top-right-radius: 1rem;
+}
+
+.task-media {
+    width: 20rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgb(238, 205, 175);
+    border-top-left-radius: 1rem; 
+    border-top-right-radius: 1rem;
+}
+
+.description {
+    height: 60%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
-.task {
-    height: 2.5rem;
+.buttons-task {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgb(238, 175, 175);
-    padding: .5rem;
+    justify-content: end;
+    gap: 1rem;
+    padding: 1rem;
 }
 
-.buttons-task {
-    width: 7rem;
-    display: flex;
-    justify-content: space-between;
+section::-webkit-scrollbar {
+    width: 12px;
+}
+  
+section::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 10px;
+}
+  
+section::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px;
+}
+  
+section::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

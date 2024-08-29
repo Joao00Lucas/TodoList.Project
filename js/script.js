@@ -14,6 +14,39 @@
 //CRUD - Create, Read, Update, Delete
 // pegar os dados - armazenar em um array de objetos - (obj com 3 campos) - inserir o novo elemento no array - e grava novamente com o setItem
 
+    // const tarefa = document.querySelector('.inputTitulo');
+    // // const descricao = document.querySelector('.userdesc')
+    // const nivel = document.querySelector('.dificuldadeAtividade')
+
+    // const botaoAdicionar = document.querySelector('.btnAdicionar')
+
+
+    // botaoAdicionar.addEventListener('click', (e)=> {
+    //     e.preventDefault();
+
+    //     const adicionaTitulo = titulo.value
+    //     const adicionaNivel = nivel.value
+
+    //     console.log(adicionaTitulo);
+    //     console.log(adicionaNivel);
+    // })
+
+// botaoAdicionar = document.addEventListener('click', (e)=> {
+//     e.preventDefault();
+
+//     const adicionaTitulo = tarefa.value
+//     const adicionaNivel = nivel.value
+
+//     console.log(adicionaTitulo);
+//     console.log(adicionaNivel);
+
+localStorage.setItem()
+
+
+
+
+
+//criando card pelo js
 const container = document.getElementById('container')
 
 const row = document.createElement('div')
@@ -72,6 +105,5 @@ rodape.appendChild(edit)
 rodape.appendChild(remove)
 rodape.appendChild(confirma)
 row.appendChild(espacamento)
-
 
 container.appendChild(row)
