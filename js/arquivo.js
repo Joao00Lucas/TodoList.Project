@@ -18,14 +18,7 @@ const itens = []
 let id = 0
 
 // FUNÇÕES
-// função cria card
 const saveCard = (titulo, descricao, nivel, idCard = null) => {
-  section3.innerHTML = '';
-
-  const cardCriado = getLocalStorage();
-  cardCriado.forEach(novoCard => {
-
-  
   let card;
 
   if (idCard !== null) {
@@ -47,10 +40,9 @@ const saveCard = (titulo, descricao, nivel, idCard = null) => {
     }
   }
 
-  // cria os elementos onde eles pertencem
   card = document.createElement('div');
   card.classList.add('card');
-  card.dataset.id = idCard;
+  card.dataset.id = idCard || id;
 
   const cardBody = document.createElement('div');
   cardBody.classList.add('card-body');
@@ -75,18 +67,14 @@ const saveCard = (titulo, descricao, nivel, idCard = null) => {
   botaoExcluir.classList.add('btn', 'btn-remove');
   botaoExcluir.innerHTML = '<i class="fas fa-xmark"></i>';
 
-  // Adiciona classes de acordo com a prioridade
-  cardTitle.innerHTML = novoCard.titulo;
-  cardText.innerHTML = novoCard.descricao;
-  if (novoCard.nivel === 'baixa') {
+  if (nivel === 'baixa') {
     cardTitle.classList.add('task-baixa');
-  } else if (novoCard.nivel === 'media') {
+  } else if (nivel === 'media') {
     cardTitle.classList.add('task-media');
-  } else if (novoCard.nivel === 'alta') {
+  } else if (nivel === 'alta') {
     cardTitle.classList.add('task-alta');
   }
 
-  // Monta a estrutura do card
   cardBody.appendChild(cardTitle);
   cardBody.appendChild(cardText);
   cardBody.appendChild(botaoConcluir);
@@ -95,22 +83,18 @@ const saveCard = (titulo, descricao, nivel, idCard = null) => {
   card.appendChild(cardBody);
   section3.appendChild(card);
 
-  id+= 1;
-  })
+  id++;
 };
-saveCard();
 
-// Troca as classes para esconder as sessões
-const toggleSection = ()=> { //INCOMPLETA
+const toggleSection = ()=> {
     section1.classList.toggle('esconder');
     section2.classList.toggle('esconder');
     section3.classList.toggle('esconder');
     section4.classList.toggle('esconder');
 }
 
-// Captura o id de cada card para fazer a edição do conteúdo
 const editCard = (idCard)=> {
-  let itemEncontrado = itens.find(item => item.id === idCard)
+  let itemEncontrado = itens.find(item => item.id === idCard);
 
     if (itemEncontrado) {
       const {titulo, descricao, nivel} = itemEncontrado;
@@ -121,7 +105,6 @@ const editCard = (idCard)=> {
     }
   };
 
-// função que filtra os cards por concluido, fazendo ou todos criados
 function applyFilters() {
   const filtroValor = filtroCard.value;
   const cards = document.querySelectorAll('.card');
@@ -137,26 +120,34 @@ function applyFilters() {
   });
 }
 
-function addLocalStorage(novoCard) {
-  let cardCriado = getLocalStorage();
-  cardCriado.push(novoCard);
-  localStorage.setItem('cardCriado', JSON.stringify(cardCriado));
+function AddLocalStorage(item) {
+  let tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
+  tarefas.push(item);
+  localStorage.setItem('tarefas', JSON.stringify(tarefas));
 }
 
-function getLocalStorage(){
-  const cardCriado = localStorage.getItem('cardCriado');
-  return cardCriado ? JSON.parse(cardCriado) : [];
+function AlteraLocalStorage(alteraCard) {
+  let tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
+  tarefas = tarefas.map(tarefas => tarefas.id === alteraCard.id ? alteraCard : tarefas);
+  localStorage.setItem('tarefas', JSON.stringify(tarefas));
 }
 
-function removeLocalStorage(id) {
-  let cardCriado = getLocalStorage();
-  cardCriado = cardCriado.filter(card => card.id !== id);
-  localStorage.setItem('cardCriado', JSON.stringify(cardCriado))
-  saveCard()
+function RemoveLocalStorage(idCard) {
+  let tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
+  tarefas = tarefas.filter(item => item.id !== idCard);
+  localStorage.setItem('tarefas', JSON.stringify(tarefas));
 }
+
+let tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
+tarefas.forEach(tarefa => {
+  saveCard(tarefa.titulo, tarefa.descricao, tarefa.nivel, tarefa.id);
+  itens.push(tarefa);
+  if (tarefa.id >= id) {
+    id = tarefa.id + 1;
+  }
+});
 
 // EVENTOS
-// evento adiciona card
 botaoAdicionar.addEventListener('click', (e) => {
   e.preventDefault();
 
@@ -166,32 +157,23 @@ botaoAdicionar.addEventListener('click', (e) => {
   const idCard = id;
 
   if (tituloTarefa && nivelTarefa !== 'Nível da Tarefa') {
+    const novoItem = { titulo: tituloTarefa, descricao: descricaoTarefa, nivel: nivelTarefa, id: idCard };
     saveCard(tituloTarefa, descricaoTarefa, nivelTarefa, idCard);
 
-    const novoCard = {
-      titulo: tituloTarefa,
-      descricao: descricaoTarefa,
-      nivel: nivelTarefa
-    }
+    AddLocalStorage(novoItem);
 
-    addLocalStorage(novoCard);
-    saveCard();
-
-    // Limpa os campos de entrada após adicionar a tarefa
     titulo.value = '';
     descricao.value = '';
     nivel.value = 'Nível da Tarefa';
 
-    itens.push({
-      titulo: tituloTarefa, descricao: descricaoTarefa, nivel: nivelTarefa, id: idCard
-    })
+    itens.push(novoItem);
 
+    id++;
   } else {
     alert('Por favor, preencha o título e escolha um nível para a tarefa.');
   }
 });
 
-// Evento para marcar como concluída, editar ou excluir tarefa
 document.addEventListener('click', (e) => {
   const target = e.target;
   const card = target.closest('.card');
@@ -203,14 +185,19 @@ document.addEventListener('click', (e) => {
     editCard(idCard);
     toggleSection();
   } else if (target.closest('.btn-remove')) {
+    const idCard = parseInt(card.dataset.id);
     card.remove();
-    removeLocalStorage()
+    RemoveLocalStorage(idCard);
+
+    const itemIndex = itens.findIndex(item => item.id === idCard);
+    if (itemIndex !== -1) {
+      itens.splice(itemIndex, 1);
+    }
   }
 });
 
-// permite editar o conteudo dentro dos meus inputs e o nivel
 botaoEditar.addEventListener('click', (e)=>{
-  e.preventDefault;
+  e.preventDefault();
 
   const tituloEditado = inputTitulo.value;
   const descricaoEditada = inputDescricao.value;
@@ -218,18 +205,20 @@ botaoEditar.addEventListener('click', (e)=>{
   const idCard = parseInt(inputSelect.dataset.id);
 
   if (tituloEditado && nivelEditado !== 'Nível da Tarefa') {
+    const alteradoItem = { titulo: tituloEditado, descricao: descricaoEditada, nivel: nivelEditado, id: idCard };
     saveCard(tituloEditado, descricaoEditada, nivelEditado, idCard);
+
+    AlteraLocalStorage(alteradoItem);
 
     const itemIndex = itens.findIndex(item => item.id === idCard);
     if (itemIndex !== -1) {
-      itens[itemIndex] = { titulo: tituloEditado, descricao: descricaoEditada, nivel: nivelEditado, id: idCard };
+      itens[itemIndex] = alteradoItem;
     }
 
     toggleSection();
   }
 })
 
-// permite a busca do card através do nome dele
 pesquisaInput.addEventListener('input', (e) => {
   const pesquisaValor = e.target.value.toLowerCase();
  
@@ -255,4 +244,3 @@ pesquisaBotao.addEventListener('click', () => {
   });
 });
 filtroCard.addEventListener('change', applyFilters);
-saveCard();
