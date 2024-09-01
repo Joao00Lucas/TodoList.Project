@@ -14,6 +14,7 @@ select {
   /* height: 2rem; */
   border-radius: 1rem;
   border: 3px solid #0c2142;
+  /* background-color: #d6d5d5; */
 }
 
 h3 {
@@ -23,10 +24,11 @@ h3 {
 }
 
 .all {
-  padding: .5rem;
+  padding: 0.5rem;
   width: 100vw;
   height: 100vh;
-  background: #a2a9b4;
+  /* background: #a2a9b4; */
+  background: #fbdfb5;
 }
 
 /* .themeButton {
@@ -60,6 +62,7 @@ h3 {
 
 .container {
   padding: 1rem;
+  margin-top: 3rem;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -74,8 +77,10 @@ h3 {
   text-align: center;
 }
 
+
 .btn {
   background-color: #fdfdfd;
+  /* background-color: #d6d5d5; */
   color: #0c2142;
   border: 3px solid #0c2142;
   padding: 0.3rem 0.6rem;
@@ -88,6 +93,17 @@ h3 {
   background-color: #0c2142;
 }
 
+.btn-check:hover{
+  background-color:green ;
+}
+
+.btn-edit:hover{
+  background-color: orange;
+}
+
+.btn-remove:hover{
+  background-color: red;
+}
 .btn:hover > i {
   color: #ffffff;
 }
@@ -124,6 +140,7 @@ h3 {
 
 .filtro-select {
   height: 42px;
+  width: 386px;
 }
 
 /*#############################################################################*/
@@ -155,19 +172,19 @@ h3 {
 }
 
 .task-alta {
-  background: rgb(238, 175, 175);
+  background: #e76d6b;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
 }
 
 .task-baixa {
-  background: rgb(238, 237, 175);
+  background: #6dc09c;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
 }
 
 .task-media {
-  background: rgb(238, 205, 175);
+  background: #ffed4b;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
 }
@@ -192,12 +209,17 @@ h3 {
 
 .done p {
   color: #42a535;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 600;
   font-style: italic;
   display: flex;
+  padding-top: 12px;
   align-items: center;
   justify-content: center;
+}
+
+.done button {
+  display: none;
 }
 
 .esconder {

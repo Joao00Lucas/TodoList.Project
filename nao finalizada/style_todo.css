@@ -1,0 +1,97 @@
+body{
+    background: #d9eefa;
+}
+
+.container{
+    background: linear-gradient( 12DEG,#d9eefa,#3b2e6af3);
+    height: 100vh;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.form-inline-1{
+    display: flex;
+    gap: 8px;
+    /* margin-bottom: 10px; */
+    margin-top: 10px;
+    padding: 15px;
+}
+
+input{
+    border-radius: 5px;
+    border: 1px solid #ffffff;
+    height: 39px;
+    background-color: #fff;
+    
+}
+
+.form-inline{
+    padding-left: 15px;
+    margin-bottom: 25px; 
+}
+
+#inputPesquisa2{
+    width: 500px;
+}
+
+#inputTitulo{
+    width: 433px;
+}
+
+#staticPesquisar2{
+    width: 100px;
+    color: #ffffff;
+    font-weight:500;
+}
+#staticTarefa2{
+    width: 156px;
+    color: #ffffff;
+    font-weight: 400;
+}
+
+.rodape{
+    margin-bottom: 10px;
+}
+.userBtn-remove {
+    /* display: inline;
+    justify-content: space-between; */
+    gap: 10px;
+    width: 40px;
+    height: 37px;
+}
+
+.userBtn-edit{
+    /* display: inline;
+    justify-content: space-between; */
+    gap: 10px;
+    width: 40px;
+    height: 37px;
+}
+
+.userBtn-edit:hover{
+    background-color: orange;
+}
+
+.userBtn-remove:hover{
+    background-color: red;
+}
+button:hover > i {
+    color: #ffffff;
+}
+
+img{
+    width: 100px;
+    height: 200px;
+}
+
+.row{
+    display: flex;
+    justify-content: center;
+    /* flex-direction: row; */
+    padding: 20px;
+}
+
+.rodape{
+    display: flex;
+    justify-content: space-around;
+}
