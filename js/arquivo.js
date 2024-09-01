@@ -1,197 +1,246 @@
 // DECLARANDO VARIÁVEIS
-const container = document.querySelector('.container');
-const section3 = document.querySelector('.section3');  //cards
-
-const titulo = document.querySelector('.userText');    // pegando informaçoes do card
-const descricao = document.querySelector('.userDesc');
-const nivel = document.querySelector('.userChoice');
-
-// BOTÃO
+const titulo = document.querySelector('#user-text');
+const descricao = document.querySelector('#userdesc');
+const nivel = document.querySelector('#prioridade-select');
 const botaoAdicionar = document.querySelector('.userBtn');
+const botaoEditar = document.querySelector('.editBtn');
+const section1 = document.querySelector('#todo-section');
+const section2 = document.querySelector('#section2');
+const section3 = document.querySelector('#lista');
+const section4 = document.querySelector('#edicao');
+const inputTitulo = document.querySelector('.editText')
+const inputDescricao = document.querySelector('.editDesc')
+const inputSelect = document.querySelector('.editChoice')
+const pesquisaInput = document.querySelector('#pesquisa-input')
+const filtroCard = document.querySelector('#filtro-select')
+const pesquisaBotao = document.querySelector('#pesquisa-btn')
+const itens = []
+let id = 0
 
-// EVENTOS
-botaoAdicionar.addEventListener('click', (e)=> {
-    e.preventDefault();
+// FUNÇÕES
+const saveCard = (titulo, descricao, nivel, idCard = null) => {
+  let card;
 
-    const adicionaTitulo = titulo.value
-    const adicionaDescricao = descricao.value
-    const adicionaNivel = nivel.value
+  if (idCard !== null) {
+    card = document.querySelector(`.card[data-id="${idCard}"]`);
+   
+    if (card) {
+      card.querySelector('.card-title').innerText = titulo;
+      card.querySelector('.card-text').innerText = descricao;
 
-    // console.log(adicionaNivel);
+      card.querySelector('.card-title').classList.remove('task-baixa', 'task-media', 'task-alta');
+      if (nivel === 'baixa') {
+        card.querySelector('.card-title').classList.add('task-baixa');
+      } else if (nivel === 'media') {
+        card.querySelector('.card-title').classList.add('task-media');
+      } else if (nivel === 'alta') {
+        card.querySelector('.card-title').classList.add('task-alta');
+      }
+      return;
+    }
+  }
 
-    const novoCard = {
-        titulo:adicionaTitulo,
-        descricao:adicionaDescricao,
-        nivel:adicionaNivel
-    };
+  card = document.createElement('div');
+  card.classList.add('card');
+  card.dataset.id = idCard || id;
 
-    addCardLocalStorage(novoCard);
+  const cardBody = document.createElement('div');
+  cardBody.classList.add('card-body');
 
-    showCard();
+  const cardTitle = document.createElement('h5');
+  cardTitle.classList.add('card-title');
+  cardTitle.innerText = titulo;
 
-    titulo.value = " ";
-    descricao.value = " ";
-    nivel.value = " ";
+  const cardText = document.createElement('p');
+  cardText.classList.add('card-text');
+  cardText.innerText = descricao;
+
+  const botaoConcluir = document.createElement('button');
+  botaoConcluir.classList.add('btn', 'btn-check');
+  botaoConcluir.innerHTML = '<i class="fas fa-check"></i>';
+
+  const botaoEditar = document.createElement('button');
+  botaoEditar.classList.add('btn', 'btn-edit');
+  botaoEditar.innerHTML = '<i class="fas fa-pen"></i>';
+
+  const botaoExcluir = document.createElement('button');
+  botaoExcluir.classList.add('btn', 'btn-remove');
+  botaoExcluir.innerHTML = '<i class="fas fa-xmark"></i>';
+
+  if (nivel === 'baixa') {
+    cardTitle.classList.add('task-baixa');
+  } else if (nivel === 'media') {
+    cardTitle.classList.add('task-media');
+  } else if (nivel === 'alta') {
+    cardTitle.classList.add('task-alta');
+  }
+
+  cardBody.appendChild(cardTitle);
+  cardBody.appendChild(cardText);
+  cardBody.appendChild(botaoConcluir);
+  cardBody.appendChild(botaoEditar);
+  cardBody.appendChild(botaoExcluir);
+  card.appendChild(cardBody);
+  section3.appendChild(card);
+
+  id++;
+};
+
+const toggleSection = ()=> {
+    section1.classList.toggle('esconder');
+    section2.classList.toggle('esconder');
+    section3.classList.toggle('esconder');
+    section4.classList.toggle('esconder');
+}
+
+const editCard = (idCard)=> {
+  let itemEncontrado = itens.find(item => item.id === idCard);
+
+    if (itemEncontrado) {
+      const {titulo, descricao, nivel} = itemEncontrado;
+      inputTitulo.value = titulo;
+      inputDescricao.value = descricao;
+      inputSelect.value = nivel;
+      inputSelect.dataset.id = idCard;
+    }
+  };
+
+function applyFilters() {
+  const filtroValor = filtroCard.value;
+  const cards = document.querySelectorAll('.card');
+
+  cards.forEach(card => {
+    const cardStatus = card.classList.contains('done') ? 'concluido' : 'fazendo';  
+
+    if (filtroValor === 'todos' || filtroValor === cardStatus) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+function AddLocalStorage(item) {
+  let tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
+  tarefas.push(item);
+  localStorage.setItem('tarefas', JSON.stringify(tarefas));
+}
+
+function AlteraLocalStorage(alteraCard) {
+  let tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
+  tarefas = tarefas.map(tarefas => tarefas.id === alteraCard.id ? alteraCard : tarefas);
+  localStorage.setItem('tarefas', JSON.stringify(tarefas));
+}
+
+function RemoveLocalStorage(idCard) {
+  let tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
+  tarefas = tarefas.filter(item => item.id !== idCard);
+  localStorage.setItem('tarefas', JSON.stringify(tarefas));
+}
+
+let tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
+tarefas.forEach(tarefa => {
+  saveCard(tarefa.titulo, tarefa.descricao, tarefa.nivel, tarefa.id);
+  itens.push(tarefa);
+  if (tarefa.id >= id) {
+    id = tarefa.id + 1;
+  }
 });
 
+// EVENTOS
+botaoAdicionar.addEventListener('click', (e) => {
+  e.preventDefault();
 
-function addCardLocalStorage(novoCard){
-    let cardCriado = getLocalStorage();
-    cardCriado.push(novoCard);
-    localStorage.setItem('cardCriado', JSON.stringify(cardCriado));
-}
+  const tituloTarefa = titulo.value;
+  const descricaoTarefa = descricao.value;
+  const nivelTarefa = nivel.value;
+  const idCard = id;
 
+  if (tituloTarefa && nivelTarefa !== 'Nível da Tarefa') {
+    const novoItem = { titulo: tituloTarefa, descricao: descricaoTarefa, nivel: nivelTarefa, id: idCard };
+    saveCard(tituloTarefa, descricaoTarefa, nivelTarefa, idCard);
 
-function getLocalStorage(){
-    const cardCriado = localStorage.getItem('cardCriado');
-    return cardCriado ? JSON.parse(cardCriado) : [];
-}
+    AddLocalStorage(novoItem);
 
-function showCard (){
-    section3.innerHTML = " ";
+    titulo.value = '';
+    descricao.value = '';
+    nivel.value = 'Nível da Tarefa';
 
-    const cardCriado = getLocalStorage();
+    itens.push(novoItem);
 
-    cardCriado.forEach(novoCard => {
+    id++;
+  } else {
+    alert('Por favor, preencha o título e escolha um nível para a tarefa.');
+  }
+});
 
-        const card = document.createElement('div');
-        card.classList.add("task-card");
+document.addEventListener('click', (e) => {
+  const target = e.target;
+  const card = target.closest('.card');
 
-        const firstcard = document.createElement('div');
-        firstcard.classList.add("task-alta");
+  if (target.closest('.btn-check')) {
+    card.classList.toggle('done');
+  } else if (target.closest('.btn-edit')) {
+    const idCard = parseInt(card.dataset.id);
+    editCard(idCard);
+    toggleSection();
+  } else if (target.closest('.btn-remove')) {
+    const idCard = parseInt(card.dataset.id);
+    card.remove();
+    RemoveLocalStorage(idCard);
 
-        const title = document.createElement('h3');
-        title.classList.add("titulo");
+    const itemIndex = itens.findIndex(item => item.id === idCard);
+    if (itemIndex !== -1) {
+      itens.splice(itemIndex, 1);
+    }
+  }
+});
 
-        const secondcard = document.createElement('div');
-        secondcard.classList.add("description");
+botaoEditar.addEventListener('click', (e)=>{
+  e.preventDefault();
 
-        const paragrafo = document.createElement('p');
-        paragrafo.classList.add("descricao");
+  const tituloEditado = inputTitulo.value;
+  const descricaoEditada = inputDescricao.value;
+  const nivelEditado = inputSelect.value;
+  const idCard = parseInt(inputSelect.dataset.id);
 
-        const tirthcard = document.createElement('div');
-        tirthcard.classList.add("buttons-task");
+  if (tituloEditado && nivelEditado !== 'Nível da Tarefa') {
+    const alteradoItem = { titulo: tituloEditado, descricao: descricaoEditada, nivel: nivelEditado, id: idCard };
+    saveCard(tituloEditado, descricaoEditada, nivelEditado, idCard);
 
-        const botaocheck = document.createElement('button');
-        botaocheck.classList.add('userBtn-check');
-        botaocheck.innerHTML = '<i class="fas fa-check"></i>';
+    AlteraLocalStorage(alteradoItem);
 
-        const botaoedit = document.createElement('button');
-        botaoedit.classList.add('userBtn-edit');
-        botaoedit.innerHTML = '<i class="fas fa-pen"></i';
+    const itemIndex = itens.findIndex(item => item.id === idCard);
+    if (itemIndex !== -1) {
+      itens[itemIndex] = alteradoItem;
+    }
 
-        const botaoremove = document.createElement('button');
-        botaoremove.classList.add('userBtn-remove');
-        botaoremove.innerHTML = '<i class="fas fa-xmark"></i>';
+    toggleSection();
+  }
+})
 
-        section3.appendChild(card)
-        card.appendChild(firstcard)
-        firstcard.appendChild(title)
-        card.appendChild(secondcard)
-        secondcard.appendChild(paragrafo)
-        card.appendChild(tirthcard)
-        tirthcard.appendChild(botaocheck)
-        tirthcard.appendChild(botaoedit)
-        tirthcard.appendChild(botaoremove)
-        container.appendChild(section3)
+pesquisaInput.addEventListener('input', (e) => {
+  const pesquisaValor = e.target.value.toLowerCase();
+ 
+  const tarefasCriadas = document.querySelectorAll('.card');
+ 
+  tarefasCriadas.forEach(card => {
+    const cardTitulo = card.querySelector('.card-title').textContent.toLowerCase();
+   
+    if (cardTitulo.includes(pesquisaValor)) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+})
 
-        title.innerHTML = novoCard.titulo;
-        paragrafo.innerHTML = novoCard.descricao;
-        if (novoCard.nivel == "baixa") {
-            firstcard.classList.add("task-baixa");
-        } else if (novoCard.nivel == "media"){
-            firstcard.classList.add("task-media");
-        }  else {
-            firstcard.classList.add("task-alta");
-        }
+pesquisaBotao.addEventListener('click', () => {
+  pesquisaInput.value = '';
 
-    });
-}
-
-showCard();
-
-
-
-//localStorage
-
-// let cardCriado = [];
-
-// function setLocalStorage(){
-//     localStorage.setItem(adicionaTitulo, JSON.stringify(titulo))
-//     return localStorage
-// }
-
-// function getLocalStorage(){
-
-// }
-
-
-
-
-// function addCard (){
-//     if(localStorage.getItem('armazena')){
-//         cardCriado = JSON.parse(localStorage.getItem('armazena'));
-//     }
-
-//     let novoCard = document.getElementById("task-card").value = " ";
-
-//     cardCriado.push(novoCard);
-    
-//     document.getElementById('task-card').value = " ";
-//     localStorage.setItem('armazena',JSON.stringify(cardCriado));
-// }
-
-
-
-// function showCard(){
-//     let pesquisaCard = document.getElementById('pesquisaBtn');
-//     pesquisaCard.innerHTML = "";
-
-//     if (localStorage.getItem('armazena')){
-//         cardCriado = JSON.parse(localStorage.getItem('armazena'));
-//     }
-
-//     for (let i in cardCriado){
-//         let cartao = document.createElement("card");
-//         cartao.innerHTML = cardCriado[i];
-//         pesquisaCard.append(card)
-//     }
-// }
-
-// function clearCard(){
-//     cardCriado = [];
-//     localStorage.setItem('armazena', JSON.stringify(cardCriado));
-
-//     showCard();
-// }
-
-
-// const section1 = document.querySelector("#section1")
-// const filtrando = document.querySelector("#filtrando")
-// const pesquisaBnt = document.querySelector("#pesquisaBnt")
-
-// section1.addEventListener("submit", (e) =>{
-//     e.preventDefault();
-//     const tarefa = document.querySelector("#userText")
-
-//     localStorage.setItem("userText", tarefa.value)
-// });
-
-
-//const card =[];
-
-
-// nameForm  section1
-// welcome   filtrando
-// logout    pesquisaBnt
-
-// card.addEventListener("submit", function (event){
-//      event.preventDefault(); //retira o comprtamento default de apagar todos os dados 
-//      localStorage.setItem("Titulo", JSON.stringify ({titulo: adicionaTitulo, filtro: "Fazendo"}))// precisa comecar com defaul - em andamento
-//       //salvar - sobrescreve
-//      const r = localStorage.getItem("nome");  //guardar -- fazer um array de objetos para armazenar as informações
-//      console.log(r);
-//  });
-
-//CRIAR UMA FUNCAO QUE VAI TRANSFORMAR O CARD EM STRING COM JSON - ADICIONAR A FUNCAO NOS EVENTOS DE EDITAR, EXCLUIR E SELECIONAR
-//FUNCAO PRA SALVAR E OUTRA PARA ATUALIZAR - JOGAR NA TELA
+  const tarefasCriadas = document.querySelectorAll('.card');
+  tarefasCriadas.forEach(card => {
+    card.style.display = 'block';
+  });
+});
+filtroCard.addEventListener('change', applyFilters);
