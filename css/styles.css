@@ -209,18 +209,13 @@ h3 {
 
 .done p {
   color: #42a535;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 600;
   font-style: italic;
   display: flex;
-  padding-top: 12px;
-  align-items: center;
   justify-content: center;
 }
 
-.done button {
-  display: none;
-}
 
 .esconder {
   display: none;
